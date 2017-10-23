@@ -13,8 +13,8 @@ See `ReflectorPlay.java` for usage examples.  The basic syntax is:
 
 Consider if you needed to load the Joda Time jar file dynamically.  The process would be something like this:
 
-    String pathToJarFile = "";
-    String className = "";
+    String pathToJarFile = "file:///C:/path/to/jar/file/joda-time-2.x.x.jar";
+    String className = "org.joda.time.DateTime";
     Reflector r = new Reflector();
     r.loadClass(className, pathToJarFile);
     r.loadConstructor();
