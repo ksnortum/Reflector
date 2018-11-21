@@ -39,7 +39,7 @@ import java.net.URLClassLoader;
  *     Object bar = r.invoke();</pre>    
  * 
  * @author Knute Snortum
- * @version 2017.10.20
+ * @version 2018.11.20
  */
 // TODO How to do logging
 public class Reflector {

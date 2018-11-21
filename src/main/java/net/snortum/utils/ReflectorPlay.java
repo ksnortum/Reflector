@@ -5,9 +5,11 @@
  */
 package net.snortum.utils;
 
+import net.snortum.utils.Reflector;
+
 /**
  * A "sand box" or "playground" in which to test the {@link Reflector} class.  Change the 
- * program to execute one of the three {@code runX()} methods.  Unmodified, this program
+ * program to execute one of the five {@code runX()} methods.  Unmodified, this program
  * uses {@link net.snortum.hello.HelloWorld#printIt(String)} to invoke the method reflectively. 
  * 
  * @author Knute Snortum
@@ -30,7 +32,7 @@ public class ReflectorPlay {
 	private final static String CLASS_NAME = "org.joda.time.DateTime";
 
 	/**
-	 * Change the main method to run one of the three supplied methods, or create your own.
+	 * Change the main method to run one of the five supplied methods, or create your own.
 	 * 
 	 * @param args arguments from the command line
 	 */
