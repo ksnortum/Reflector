@@ -245,7 +245,7 @@ public class Reflector {
 	/**
 	 * Invokes the loaded method and returns the result. The result will be cast to the
 	 * type of variable the caller is setting.  The {@link #loadMethod(String, Class...)}
-	 * method must be called first.  Result is null if the method is static or an error
+	 * method must be called first.  Result is {@code null} if the method is static or an error
 	 * was encountered. 
 	 * 
 	 * @param <T> the type of the result of invoking the method
@@ -260,11 +260,14 @@ public class Reflector {
 		if (method == null) {
 			throw new IllegalStateException("Method has not been successfully loaded");
 		}
-		
+
 		Object result;
 		try {
 			result = method.invoke(instance, params);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			if (instance == null) {
+				System.err.println("Instance was null but this is not a static method");
+			}
 			e.printStackTrace();
 			return null;
 		}

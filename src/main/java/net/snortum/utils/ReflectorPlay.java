@@ -8,10 +8,10 @@ package net.snortum.utils;
 /**
  * A "sand box" or "playground" in which to test the {@link Reflector} class.  Change the 
  * program to execute one of the three {@code runX()} methods.  Unmodified, this program
- * uses itself invoke a method reflectively. 
+ * uses {@link net.snortum.hello.HelloWorld#printIt(String)} to invoke the method reflectively. 
  * 
  * @author Knute Snortum
- * @version 2017.10.20
+ * @version 2018.11.20
  */
 public class ReflectorPlay {
 	
@@ -35,7 +35,7 @@ public class ReflectorPlay {
 	 * @param args arguments from the command line
 	 */
 	public static void main(String[] args) {
-		new ReflectorPlay().run3();
+		new ReflectorPlay().run5();
 	}
 	
 	// Demonstrations using a dynamically loaded jar file, Joda Time 
@@ -99,13 +99,39 @@ public class ReflectorPlay {
 	// Demonstration of using simple reflection.
 	
 	/**
-	 * Invoke the method {@ #add(int, int)} in this class reflectively.
+	 * Invoke the static method {@link #add(int, int)} in this class reflectively.
 	 */
+	@SuppressWarnings("unused")
 	private void run3() {
 		Reflector r = new Reflector();
 		r.loadClass("net.snortum.utils.ReflectorPlay");
 		r.loadMethod("add", int.class, int.class);
 		System.out.println("Sum: " + r.invoke(2, 3));
+	}
+	
+	/**
+	 * Invoke the instance method {@link net.snortum.hello.HelloWorld#printIt()}
+	 */
+	@SuppressWarnings("unused")
+	private void run4() {
+		Reflector r = new Reflector();
+		r.loadClass("net.snortum.hello.HelloWorld");
+		r.loadConstructor();
+		r.loadNewInstance();
+		r.loadMethod("printIt");
+		r.invoke();
+	}
+	
+	/**
+	 * Invoke an overloaded instance method {@link net.snortum.hello.HelloWorld#printIt(String)}
+	 */
+	private void run5() {
+		Reflector r = new Reflector();
+		r.loadClass("net.snortum.hello.HelloWorld");
+		r.loadConstructor();
+		r.loadNewInstance();
+		r.loadMethod("printIt", String.class);
+		r.invoke("Knute");
 	}
 	
 	/**
